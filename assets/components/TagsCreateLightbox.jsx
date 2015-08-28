@@ -38,7 +38,7 @@ class TagsCreateLightbox extends React.Component {
           <p className='title'>New label</p>
           <fieldset>
             <p>Name your new label</p>
-            <input type="text" id="tag-create-input" onChange={this.handleChange} value={this.state.value} />
+            <input type="text" id="tag-create-input" onChange={this.handleChange.bind(this)} value={this.state.value} />
             <p>Pick a color</p>
             <ColorSelector select={this.selectColor} ref="colorSelector"/>
           </fieldset>

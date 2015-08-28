@@ -3,8 +3,6 @@ import Tag from './Tag';
 
 class TagList extends React.Component {
   
-  componentDidMount() {}  
-
   render() {
     
     let items = Object.keys(this.props.tags).map((id, i) => {

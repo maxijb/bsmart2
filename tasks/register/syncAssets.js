@@ -3,6 +3,7 @@ module.exports = function (grunt) {
 		'jst:dev',
 		'less:dev',
 		'sync:dev',
+		'react:dynamic_mappings',
 		'strip_code:compile',
 		'browserify:dist',
 		'jade:compile',
