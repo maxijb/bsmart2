@@ -1,0 +1,18 @@
+extends ../layout
+
+block body
+  #top-advertising
+
+  section.grid.hpadding.content
+    aside.column-3
+      include ../cross/searchbox 
+      .lateral-advertising
+      .social-buttons
+
+    main.column-9
+      include ../partials/breadcrumb
+      include ../partials/h1-title
+      
+      section.cities
+        each region, i in regions
+             +place-link(region, W.location, W.request)

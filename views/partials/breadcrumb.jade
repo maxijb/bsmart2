@@ -1,0 +1,11 @@
+#breadcrumb
+	a.home(href='/')=__('HOME')
+	span.separator
+	if W.location.grandparent
+		+place-link({ name: W.location.grandparent, name_id: W.location.grandparent_name_id, type: W.location.grandparent_type }, {}, W.request)
+		span.separator
+	if W.location.parent
+		+place-link({ name: W.location.parent, name_id: W.location.parent_name_id, type: W.location.parent_type}, (W.location.grandparent ? { parent: W.location.grandparent } : {}), W.request)
+		span.separator
+	if W.location.name
+		span.actual= W.location.name

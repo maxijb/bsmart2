@@ -1,0 +1,19 @@
+mixin question-link(questioncode, monthId, obj, bases)
+
+	- var monthSuffix = monthId ? '-' + monthId : ''
+	- var monthKey = monthId ? '_Month' : ''
+	- var type = obj.type || 'city'
+	
+	//- Muestra el parent name. Solo para USA mostramos la region, para el resto tratamos de que sea "ciudad, pais"
+	if type == "city" && obj.country_id == 20208
+		- var parentName = obj.parent || bases.name || bases.parent
+	else 
+		- var parentName = obj.grandparent || bases.parent || bases.name || obj.parent || ""
+	
+	if parentName
+		- parentName = ', ' + parentName
+	
+	- var description = __("Question_" + questioncode + monthKey, obj.name + parentName, (monthId ? __("Month_Long_" + monthId) : ''))
+	
+	a.title(href="/question/" + questioncode + '/' + obj.name_id + monthSuffix + '/' + helpers.slugify(description))= description
+

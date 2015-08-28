@@ -1,0 +1,15 @@
+extends ../layout
+
+block body
+	sidebar#sidebar
+
+		section#user
+			!{loginComponent}
+
+		section#tags-wrapper
+			!{tagsContainer}  
+
+
+	main#content-wrapper
+		#new-bookmark
+		#bookmarks

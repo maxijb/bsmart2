@@ -1,0 +1,76 @@
+.bookmark{
+	display:inline-block;
+	background:@white;
+	border-top:10px solid @lightgreen;
+	border-radius:0 0 3px 3px;
+	box-shadow:0 1px 1px 0 lighten(@darkgrey, 50%);
+	margin-bottom:1.2%;
+	
+	@media all and (min-width: 800px) and (max-width: 1020px) {
+		width:49%;
+		&:nth-child(even){
+		margin-left:1%;
+		}		
+	}
+	@media all and (min-width: 1020px) {
+		width:32%;
+		&:nth-child(odd){
+			margin-right:0.8%;
+		}
+		&:nth-child(odd) + &:nth-child(even) {
+			margin-right:0.8%;
+		}				
+	}	
+
+	a{
+		display:block;
+		padding:10px;
+		position:relative;
+		.bookmark-name{
+			color:@darkgrey;
+			font-size:@bigfont;
+			margin-bottom:5px;
+			overflow:hidden;
+			text-overflow:ellipsis;
+			white-space:nowrap;
+		}
+		.bookmark-url{
+			font-size:@smallfont;
+			overflow:hidden;
+			text-overflow:ellipsis;
+			white-space:nowrap;
+		}		
+		.bicon-readguide{
+			display:none;
+			position:absolute;
+			top:10px;
+			right:10px;
+			color:darken(@white, 12%);
+			font-size:@biggestfont;			
+		}
+		&:hover{
+			text-decoration:none;
+			background:darken(@white, 2%);
+			.bicon-readguide{
+				display:block
+			}
+		}		
+	}
+	.bookmark-actions{
+		padding:10px;
+		border-top:1px dotted darken(@lightgrey,10%);
+		span{
+			margin-right:10px;
+			font-size:@smallestfont;
+			color:lighten(@darkgrey, 40%);
+			cursor:pointer;
+			&:hover{
+				color:lighten(@darkgrey, 20%);
+			}
+			i{
+				margin-right:2px;
+			}			
+		}
+	}
+}
+

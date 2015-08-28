@@ -1,0 +1,103 @@
+#sidebar{
+	background:@darkgrey;
+	position:fixed;
+	left:0;
+	top:0;
+	height:100%;
+	width:260px;
+	overflow-y: scroll;
+	#profile-box{
+		background:darken(@darkgrey, 5%);
+		padding:20px;	
+		img{
+			vertical-align:top;
+			margin-right:6px;
+			border-radius:50%;
+			border:2px solid @white;
+			max-width:40px;
+		}		
+		#user-details{
+			display:inline-block;
+			max-width:165px;
+			p{
+				color:@white;
+				font-size:@regularfont;
+				margin:5px 0;
+			}
+			a{
+				font-size:@smallfont;
+			}
+		}
+	}
+	h2{
+		font-size:@biggestfont;
+		font-weight:lighter;
+		padding:40px 20px 20px 20px;
+		color:lighten(@darkgrey, 30%);
+		position:relative;
+		.bicon-settings{
+		    position: absolute;
+		    right: 20px;
+		    font-size: @bigfont;
+		    top: 44px;
+		    &:hover{
+		    	color:@white;
+		    	cursor:pointer;
+		    }		
+		}
+	}
+	ul li{
+		position:relative;
+		padding:20px;
+		color:@white;
+		border-bottom:1px solid;
+		border-bottom-color: lighten(@darkgrey, 10%);
+		cursor:pointer;
+		&:hover{
+			background:lighten(@darkgrey, 4%);			
+		}
+	}
+	.label-checkbox{
+		display:inline-block;
+		height:11px;
+		width:11px;
+		border:2px solid @lightgreen;
+	    position:relative;
+	    top:2px;
+	    margin-right:6px;
+	    border-radius:2px;
+	    cursor:pointer;
+	    position:relative;
+	    &.label-checkbox-on{
+			background:@lightgreen;
+			&:before{
+				position:absolute;
+				top:2px;
+				left:0;
+				font-size:8px;
+				color:@white;
+			}
+		}
+	}
+	#new-label-action{
+		margin:20px 0 0 20px;
+		display:inline-block;
+	}
+/* Mobile side bar */
+	@media all and (min-width: 300px) and (max-width: 780px) {
+		height:auto;
+		width:100%;
+		z-index:2;
+		.bookmarks-filters-box{
+			display:none;
+			position:absolute;
+			background-color:white;
+			top:10px;
+			right:10px;
+			width:300px;
+		}
+		#profile-box{
+			padding:15px;
+		}
+	}	
+}

@@ -1,0 +1,14 @@
+
+/*--------------------------------------------------
+Renders a react component server-side.
+It receives 3 params: the component to be rendered, the props, and the res object
+The last 2 are optional.
+res is used to expose the i18n function, which allow to use translations in the component.
+--------------------------------------------------*/
+
+var React = require('react');
+exports.render = function(component, props, res) {
+	var i18n = res && res.i18n ? res.i18n : null;
+	var newprops = _.extend(props, {__ : i18n});
+   return React.renderToString(React.createElement(component, newprops ));
+}

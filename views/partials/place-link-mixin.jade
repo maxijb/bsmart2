@@ -1,0 +1,23 @@
+mixin place-link(obj, bases, request)
+
+	- var monthId = obj.month || request.month || null
+	- var monthSuffix = monthId !== null ? '-' + monthId : ''
+	- var type = obj.type || 'city'
+	- var show = obj.show || request.show || 'weather'
+	
+	//- Muestra el parent name. Solo para USA mostramos la region, para el resto tratamos de que sea "ciudad, pais"
+	if type == "city" && obj.country_id == 20208
+		- console.log('sisisisisisis')
+		- var parentName = obj.parent || bases.name || bases.parent
+	else 
+		- var parentName = obj.grandparent || bases.parent || bases.name || ""
+	
+	if parentName
+		- parentName = ', ' + parentName
+	
+	- var name = obj.name 
+	
+	- var description = __("seo_link_" + show, name + parentName, (monthId ? __("Month_Long_" + monthId) : ''))
+	
+	a.title(href="/" + type + "/" + show + '/' + obj.name_id + monthSuffix + '/' + helpers.slugify(description), title=description)= name
+

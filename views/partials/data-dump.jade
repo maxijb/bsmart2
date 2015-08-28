@@ -1,0 +1,15 @@
+each item, key in formattedData
+	- var baseWeather = W.unit == 'f' && item.converted ? item.converted : item;
+	- console.log(W.unit)
+	h3=__('WeatherCode_'+key) + ' '
+		span
+			| (
+			=__('Unit_Symbol_' + baseWeather.unit)
+			|) 
+	table
+		tr
+			each value in baseWeather.data
+				td=value
+		tr
+			each monthId in _.range(0, 12)
+				td=__('Month_Short_' + monthId)

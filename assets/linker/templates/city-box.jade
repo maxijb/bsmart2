@@ -1,0 +1,7 @@
+-// This file should be used only on the client, since on server you should just call the mixin
+-// Whith this we make sure that the city box is exported to the client
+-// We also include the mixins to make them available from client
+
+include ../../../views/partials/city-box-mixin
+include ../../../views/partials/place-link-mixin
++city-box(obj, bases, request) 

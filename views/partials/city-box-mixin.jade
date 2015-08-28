@@ -1,0 +1,35 @@
+mixin city-box(obj, bases, request)
+	-//*** This template is used both on server and client side
+	-//*** It's a block for city info with cached information
+	
+	-// Sets the base for weather info into the object
+	-// If unit is F and there is converted we use that as base 
+	-var baseWeather = W.unit != 'c' && obj.converted ? obj.converted : obj;
+	
+	.info-window
+		img.flag(src=W.staticBaseUrl + '/flags/48/' + obj.flag)
+		+place-link(obj, bases, request)
+		.geo-info
+			if (obj.grandparent_id == 20208 && obj.parent)
+				span.division=obj.parent
+				|, 
+				span.country USA
+			else
+				span.country=obj.grandparent
+	
+		if baseWeather.temp_avg
+			p.weather-info.temp
+				span.field= __("AverageTemperature") + ': '
+				if obj.temp_min_avg
+					span.value!= __('TempMinMax', baseWeather.temp_min_avg, __('Unit_Symbol_' + W.unit), baseWeather.temp_avg, __('Unit_Symbol_' + W.unit))
+				else
+					span.value= baseWeather.temp_avg + ' ' + __('Unit_Symbol_' + W.unit) 
+	
+		if baseWeather.precipitation_avg
+			p.weather-info.rain
+				span.field=__("AveragePrecipitation") + ': '
+				- var precipitation_unit = W.unit == 'f' ? 'inch' : 'mm'
+				span.value= baseWeather.precipitation_avg + ' ' + __('Unit_Symbol_' + precipitation_unit)
+
+
+

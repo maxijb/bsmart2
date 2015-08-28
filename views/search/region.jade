@@ -1,0 +1,20 @@
+extends ../layout
+
+block body
+  #top-advertising
+
+  section.grid.hpadding.content
+    aside.column-3
+      include ../cross/searchbox 
+      .lateral-advertising
+      .social-buttons
+
+    main.column-9
+      include ../partials/breadcrumb
+      include ../partials/h1-title
+      
+      #map
+
+      section.cities
+        each city in mapData
+             +place-link(city, W.location, W.request)

@@ -1,0 +1,33 @@
+extends ../layout
+
+block body
+	#top-advertising
+
+	section.grid.hpadding.content 
+		aside.column-4
+			- searchboxMessage = __('SearchWeatherInAnotherCity');
+			include ../cross/searchbox 
+			.lateral-advertising
+			.social-buttons
+	
+		main.column-8
+			include ../partials/breadcrumb
+			
+			h1
+				span.first-line=__("TheWeatherIn")+' '
+				span.main-title=W.location.name+' '
+				if W.request.show == 'month'
+					- var monthTranslation = __('Month_Long_'+W.request.month)
+				span.description=__("TitleDescription" + W.request.show.capitalize(), monthTranslation)
+			
+			#map
+			
+			include ../partials/data-dump
+
+			each question in questions
+				- console.log(question)
+				- console.log(sails.config.constants.questions[question])
+				if W.request.month && sails.config.constants.questions[question].allowsMonth
+					+question-link(question, W.request.month, W.location, {})
+				else
+					+question-link(question, null, W.location, {})
