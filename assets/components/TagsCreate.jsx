@@ -1,48 +1,48 @@
-import React from 'react';
-import TagsCreateLightbox from './TagsCreateLightbox';
-import TagsStore from './Stores/TagsStore';
-import pubsub from './Utils/PubSub';
+var React = require('react');
+var TagsCreateLightbox = require('./TagsCreateLightbox');
+var TagsStore = require('./Stores/TagsStore');
+var pubsub = require('./Utils/PubSub');
 
-class TagsCreate extends React.Component {
+module.exports = React.createClass({
   
-  constructor(props) {
-      super(props);
-      this.state = {
-        showLightbox: false
-      }
-      this.props = props;
-  }
+  componentDidMount: function() {
+  },
 
-  openCreateTagLightbox() {
-    this.setState({showLightbox: true});
-  }
+  getInitialState: function() {
+    return {
+      showLightbox: false
+    }
+  },
 
-  closeCreateTagLightbox() {
-    this.setState({showLightbox: false});
+  openCreateTagLightbox: function() {
+  	this.setState({showLightbox: true});
+  },
+
+  closeCreateTagLightbox: function() {
+  	this.setState({showLightbox: false});
     this.refs.lightbox.reset();
-  }
+  },
 
-  create(name, color) {
+  create: function(name, color) {
+    var _this = this;
     this.setState({loading: true});
 
-    pubsub.emit("ACTION:tag-create", name, color, () => {
-      this.setState({loading: false});
-      this.closeCreateTagLightbox();
+    pubsub.emit("ACTION:tag-create", name, color, function() {
+      _this.setState({loading: false});
+      _this.closeCreateTagLightbox();
     });
-  }
+  },
 
-  render() { 
+  render: function() {
 
-    return (
-      <div className="tag-create">
-        <p className='tag-create-line'>
-          <a className="button" onClick={this.openCreateTagLightbox.bind(this)}>Create new tag</a>
-        </p>
-        <TagsCreateLightbox ref="lightbox" confirm={this.create.bind(this)} cancel={this.closeCreateTagLightbox.bind(this)} show={this.state.showLightbox} />
-      </div>
+  	return (
+    	<div className="tag-create">
+    		<p className='tag-create-line'>
+    			<a className="button" onClick={this.openCreateTagLightbox}>Create new tag</a>
+    		</p>
+    		<TagsCreateLightbox ref="lightbox" confirm={this.create} cancel={this.closeCreateTagLightbox} show={this.state.showLightbox} />
+    	</div>
     );
   }
+});
 
-}
-
-export default TagsCreate;

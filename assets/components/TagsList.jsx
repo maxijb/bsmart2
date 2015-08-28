@@ -1,25 +1,25 @@
-import React from 'react';
-import Tag from './Tag';
-
-class TagList extends React.Component {
+var React = require('react');
+var Tag = require('./Tag');
+module.exports = React.createClass({
   
-  render() {
-    
-    let items = Object.keys(this.props.tags).map((id, i) => {
-        let item = this.props.tags[id];
-        return (
-          <Tag tag={item} key={item.id} remove={this.props.removeTag} select={this.props.selectTag}/>
-        );
+  componentDidMount: function() {
+  },
+
+
+  render: function() {
+    var _this = this;
+  	var items = Object.keys(this.props.tags).map(function (id, i) {
+      var item = _this.props.tags[id];
+      return (
+        <Tag tag={item} key={item.id} remove={_this.props.removeTag} select={_this.props.selectTag}/>
+      );
     });
 
     return (
-      <ul className="tags-list">
-        {items}
-      </ul>
+    	<ul className="tags-list">
+    		{items}
+    	</ul>
     );
   }
-
-}
-
-export default TagList;
+});
 

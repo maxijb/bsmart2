@@ -1,56 +1,50 @@
-import React from 'react';
-import ColorSelector from './ColorSelector';
-
-
-class TagsCreateLightbox extends React.Component {
+var React = require('react');
+var ColorSelector = require('./ColorSelector');
+module.exports = React.createClass({
   
-  constructor() {
-    super();
-    this.state = {
+  componentDidMount: function() {
+  },
+
+  getInitialState: function() {
+    return {
       value: ''
     }
-  }
+  },
 
-  componentDidMount() {}  
+  handleChange: function(event) {
+  	this.setState({value: event.target.value});
+  },
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
+  selectColor: function(color) {
+  	this.setState({color: color});
+  },
 
-  selectColor(color) {
-    this.setState({color: color});
-  }
-
-  confirm() {
+  confirm: function() {
     this.props.confirm(this.state.value, this.refs.colorSelector.state.active);
-  }
+  },
 
-  reset() {
+  reset: function() {
     this.setState({value: ""});
     this.refs.colorSelector.reset();
-  }
+  },
 
-  render() {
+  render: function() {
 
-    return (
-      <div className={"tag-create-lightbox-dimmer " + (this.props.show ? "" : " hidden")}>
-        <div className='tag-create-lightbox'>
-          <p className='title'>New label</p>
-          <fieldset>
-            <p>Name your new label</p>
-            <input type="text" id="tag-create-input" onChange={this.handleChange.bind(this)} value={this.state.value} />
-            <p>Pick a color</p>
-            <ColorSelector select={this.selectColor} ref="colorSelector"/>
-          </fieldset>
-          <a className="button primary" onClick={this.confirm}>Create</a>
-          <a className="button" onClick={this.props.cancel}>Cancel</a>
-        </div>
-      </div>
+  	return (
+    	<div className={"tag-create-lightbox-dimmer " + (this.props.show ? "" : " hidden")}>
+    		<div className='tag-create-lightbox'>
+    			<p className='title'>New label</p>
+    			<fieldset>
+    				<p>Name your new label</p>
+    				<input type="text" id="tag-create-input" onChange={this.handleChange} value={this.state.value} />
+    				<p>Pick a color</p>
+    				<ColorSelector select={this.selectColor} ref="colorSelector"/>
+    			</fieldset>
+    			<a className="button primary" onClick={this.confirm}>Create</a>
+    			<a className="button" onClick={this.props.cancel}>Cancel</a>
+    		</div>
+    	</div>
     );
-
   }
-  
-}
-
-export default TagsCreateLightbox;
+});
 

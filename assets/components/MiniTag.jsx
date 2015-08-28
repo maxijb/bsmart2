@@ -1,14 +1,15 @@
-import React from 'react';
-
-class Minitag extends React.Component {
+var React = require('react');
+module.exports = React.createClass({
   
-  componentDidMount() {}  
+  componentDidMount: function() {
+  },
+  
 
-  render() {
+  
+  render: function() {
     return (
-      <span className="searched-label">{this.props.tag.name}</span>
+      <span className="searched-label">{this.props.tag.name}</span> 
     );
   }
-}
+});
 
-export default Minitag;

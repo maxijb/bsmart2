@@ -26,11 +26,15 @@ module.exports = React.createClass({
 
   create: function(bookmark) {
 
+    var _this = this;
+
     pubsub.emit("ACTION:bookmark-create", 
-                _.extend({user_id: W.user.id}, bookmark), 
-                () => {
-                        this.setState({loading: false});
-                        this.closeCreateLightbox();
+                
+                    _.extend({user_id: W.user.id}, bookmark), 
+                
+                    function() {
+                        _this.setState({loading: false});
+                        _this.closeCreateLightbox();
                     }
                 );
       
