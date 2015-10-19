@@ -6,15 +6,14 @@ var MiniTag = require('./MiniTag');
 module.exports = React.createClass({
   mixins: [CommonMixins.translationMixin],
   componentDidMount: function() {
-      var _this = this;      
 
-      pubsub.on("EVENT:tags-updated", function(tags, active) {
+      pubsub.on("EVENT:tags-updated", (tags, active) => {
         var activeTags = [];
         for (var i in active) {
           activeTags.push(tags[i]);
         } 
 
-        _this.setState({activeTags: activeTags});
+        this.setState({activeTags: activeTags});
       });
   },
 

@@ -1,37 +1,44 @@
-var React = require('react');
-var TagsList = require('./TagsList');
-var TagsCreate = require('./TagsCreate');
-var pubsub = require('./Utils/PubSub');
-var CommonMixins = require('./CommonMixins');
-var TagsStore = require('./Stores/TagsStore');
+import TagsList from './TagsList';
+import TagsCreate from './TagsCreate';
+import pubsub from './Utils/PubSub';
+import CommonMixins from './CommonMixins';
+import TagsStore from './Stores/TagsStore';
+
+import React from 'react';
+import AddI18n from './Utils/AddI18n';
 
 
-module.exports = React.createClass({
-  mixins: [CommonMixins.translationMixin],
-  componentDidMount: function() {
-    var _this = this;
-    pubsub.on('EVENT:tags-updated', function(tags, active) {
-      _this.setState({tags: tags, active: active});
-    });
-  },
+class TagsContainer extends React.Component {
 
-  getInitialState: function() {
-    //server side rendering
-    if (this.props.tags) {
-	   return {tags: (this.props.tags || null), active: {}};
+  constructor(props) {
+    super(props);
+
+    if (props.tags) {
+      //server side rendering
+      this.state = {tags: (props.tags || {}), active: {}};
     } else {
       //client side rendering consumes service
-      return {tags: TagsStore.getTags(), active: TagsStore.getActive()};
+      this.state = {tags: TagsStore.getTags(), active: TagsStore.getActive()};
     }
-  },
+    this.props = props || {};
+    AddI18n.call(this, this.props);
+  }
 
-  removeTag: function(id) {
-    var i, 
-        j, 
+
+  componentDidMount() {
+    pubsub.on('EVENT:tags-updated', (tags, active) => {
+      this.setState({tags: tags, active: active});
+    });
+  }
+
+
+  removeTag(id) {
+   
+    let j, 
         tags = this.state.tags;
 
     //find in array
-    for (i = 0; i < tags.length; i++ ) {
+    for (let i = 0; i < tags.length; i++ ) {
         if (tags[i].id == id) {
             j = i;
             break;
@@ -44,26 +51,25 @@ module.exports = React.createClass({
 
     //delete from database
     $.post('/tag/destroy/' + id);
-  },
+  }
 
-  toggleTag: function(id) {
-    pubsub.emit("ACTION:tag-toggle", id);
-  },
+  toggleTag(id) {
+      pubsub.emit("ACTION:tag-toggle", id);
+  }
 
-  selectTag: function(id) {
+  selectTag(id) {
 
      pubsub.emit("ACTION:tag-selected", {tag_id: id});
 
       var active  = this.state.active,
         tags      = this.state.tags, 
-        i,
         j;
 
       active[id] = true;
       pubsub.emit("ACTION:tag-selected", active);
 
       //find in array
-      for (i = 0; i < tags.length; i++ ) {
+      for (let i = 0; i < tags.length; i++ ) {
           if (tags[i].id == id) {
               j = i;
               break;
@@ -73,9 +79,9 @@ module.exports = React.createClass({
       tags[j].active = 1;
       this.setState({tags: tags, active: active});
 
-  },
+  }
 
-  render: function() {
+  render() {
     return (
     	<div className="tags-container bookmarks-filters-box">
         <h2>{this.__("myBookmarks")}<i className="bicon-settings"></i></h2>
@@ -84,5 +90,6 @@ module.exports = React.createClass({
     	</div>
     );
   }
-});
+}
 
+export default TagsContainer;

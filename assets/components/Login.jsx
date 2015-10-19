@@ -5,31 +5,31 @@ module.exports = React.createClass({
   mixins: [CommonMixins.translationMixin],
 
   componentDidMount: function() {
+  		
+	var _this = this;
 
-  		var _this = this;
+  	window.fbAsyncInit = function() {
+	    FB.init({
+	      appId      : '378165722393720',
+	      xfbml      : true,
+	      version    : 'v2.3'
+    });
 
-  	   	window.fbAsyncInit = function() {
-			    FB.init({
-			      appId      : '378165722393720',
-			      xfbml      : true,
-			      version    : 'v2.3'
-			    });
+					if (!_this.props.user) {
+					    FB.getLoginStatus(function(response) {
+						    _this.statusChangeCallback(response);
+						  });
+					    
+					}
+			  };
 
-			if (!_this.props.user) {
-			    FB.getLoginStatus(function(response) {
-				    _this.statusChangeCallback(response);
-				  });
-			    
-			}
-	    };
-
-	  (function(d, s, id){
-	     var js, fjs = d.getElementsByTagName(s)[0];
-	     if (d.getElementById(id)) {return;}
-	     js = d.createElement(s); js.id = id;
-	     js.src = "//connect.facebook.net/en_US/sdk.js";
-	     fjs.parentNode.insertBefore(js, fjs);
-	   }(document, 'script', 'facebook-jssdk'));
+			  (function(d, s, id){
+			     var js, fjs = d.getElementsByTagName(s)[0];
+			     if (d.getElementById(id)) {return;}
+			     js = d.createElement(s); js.id = id;
+			     js.src = "//connect.facebook.net/en_US/sdk.js";
+			     fjs.parentNode.insertBefore(js, fjs);
+			   }(document, 'script', 'facebook-jssdk'));
 
 },
 
@@ -37,9 +37,9 @@ module.exports = React.createClass({
 		return {user: (this.props.user || null)};
 	},
 
-  	testAPI: function() {
+  testAPI: function() {
   			var _this = this;
-			    // console.log('Welcome!  Fetching your information.... ');
+			    console.log('Welcome!  Fetching your information.... ');
 			    FB.api('/me', function(response) {
 			    	if (response.name) {
 				    	response.type = 'fb';	
