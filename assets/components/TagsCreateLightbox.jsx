@@ -42,7 +42,7 @@ class TagsCreateLightbox extends React.Component {
             <p>Pick a color</p>
             <ColorSelector select={this.selectColor} ref="colorSelector"/>
           </fieldset>
-          <a className="button primary" onClick={this.confirm}>Create</a>
+          <a className="button primary" onClick={this.confirm.bind(this)}>Create</a>
           <a className="button" onClick={this.props.cancel}>Cancel</a>
         </div>
       </div>

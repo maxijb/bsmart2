@@ -49,7 +49,7 @@ module.exports = React.createClass({
 
   	return (
     	<div class="fancy-select">
-        <div class='fancy-select-content' data-id={this.state.activeId} onClick={this.handleContentClick}>
+        <div class='fancy-select-content' data-id={this.state.activeId} onClick={this.handleContentClick.bind(this)}>
           <span className="fancy-select-display">{this.state.activeName}</span>
         </div>
         <ul className={"fancy-select-list" + (this.state.showList ? " visible" : "")}>

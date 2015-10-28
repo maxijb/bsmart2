@@ -43,9 +43,9 @@ module.exports = React.createClass({
   	return (
     	<div className="bookmark-create">
     		<p className='bookmark-create-line'>
-    			<a className="button" onClick={this.openCreateLightbox}>Create new Bookmark</a>
+    			<a className="button" onClick={this.openCreateLightbox.bind(this)}>Create new Bookmark</a>
     		</p>
-    		<BookmarkCreateLightbox ref="lightbox" confirm={this.create} cancel={this.closeCreateLightbox} show={this.state.showLightbox} tags={this.state.tags} />
+    		<BookmarkCreateLightbox ref="lightbox" confirm={this.create.bind(this)} cancel={this.closeCreateLightbox.bind(this)} show={this.state.showLightbox} tags={this.state.tags} />
     	</div>
     );
   }

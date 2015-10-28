@@ -54,10 +54,10 @@ module.exports = components.Searchbox = React.createClass({
 
   render: function() {
     return (
-    	<form id="searchbox" onSubmit={this.handleSubmit}>
-    		<Scomp.input value={this.state.searchText} ref="search" changeHandler={this.handleChange} /> 
+    	<form id="searchbox" onSubmit={this.handleSubmit.bind(this)}>
+    		<Scomp.input value={this.state.searchText} ref="search" changeHandler={this.handleChange.bind(this)} /> 
     		<Scomp.button /> 
-    		<Scomp.autocomplete autocompleteItems={this.state.autocompleteItems} searchText={this.state.searchText} clickHandler={this.handleItemClick}/>
+    		<Scomp.autocomplete autocompleteItems={this.state.autocompleteItems} searchText={this.state.searchText} clickHandler={this.handleItemClick.bind(this)}/>
     		<span>{this.state.autocompleteItems.length}</span>
     	</form>
     );

@@ -35,7 +35,7 @@ var BookmarkList = React.createClass({
 
     return (
     	<div className="bookmarks-list">
-        <SearchBox filter={this.filter} />
+        <SearchBox filter={this.filter.bind(this)} />
         <BookmarkInformationBar/>
         <div className='bookmark-row'>
     		  {items}

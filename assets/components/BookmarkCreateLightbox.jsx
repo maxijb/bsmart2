@@ -51,8 +51,8 @@ module.exports = React.createClass({
             <p>Tag</p>
             <SelectOption tags={this.props.tags} ref="tag" />
     			</fieldset>
-    			<a className="button primary" onClick={this.confirm}>Create</a>
-    			<a className="button" onClick={this.props.cancel}>Cancel</a>
+    			<a className="button primary" onClick={this.confirm.bind(this)}>Create</a>
+    			<a className="button" onClick={this.props.cancel.bind(this)}>Cancel</a>
     		</div>
     	</div>
     );

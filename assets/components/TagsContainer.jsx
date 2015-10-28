@@ -85,7 +85,7 @@ class TagsContainer extends React.Component {
     return (
     	<div className="tags-container bookmarks-filters-box">
         <h2>{this.__("myBookmarks")}<i className="bicon-settings"></i></h2>
-    		<TagsList tags={this.state.tags} removeTag={this.removeTag} selectTag={this.toggleTag}/> 
+    		<TagsList tags={this.state.tags} removeTag={this.removeTag.bind(this)} selectTag={this.toggleTag.bind(this)}/> 
         <TagsCreate />
     	</div>
     );

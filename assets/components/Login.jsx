@@ -116,10 +116,10 @@ module.exports = React.createClass({
 				<img src="https://placeholdit.imgix.net/~text?txtsize=5&txt=40%C3%9740&w=40&h=40" />
 				<div id="user-details" className="status">
 					<p>{connected ? this.state.user.name : ""}</p>
-					<a href="#" onClick={this.logout}>{this.__("logOut")}</a>
+					<a href="#" onClick={this.logout.bind(this)}>{this.__("logOut")}</a>
 				</div>
 			</div>
-    		<div className={"button " + (connected ? 'hidden' : "")} onClick={this.login}>{this.__("logInWithFacebook")}</div>
+    		<div className={"button " + (connected ? 'hidden' : "")} onClick={this.login.bind(this)}>{this.__("logInWithFacebook")}</div>
     	</div>
     	);
   }
