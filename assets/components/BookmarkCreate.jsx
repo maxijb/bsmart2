@@ -1,31 +1,37 @@
 var React = require('react');
+var Modal = require('./Modal');
 var BookmarkCreateLightbox = require('./BookmarkCreateLightbox');
 var SearchBox = require('./SearchBox');
 var _ = require('lodash');
 var pubsub = require('./Utils/PubSub');
+var AddI18n = require('./Utils/AddI18n');
 
-module.exports = React.createClass({
-  
-  componentDidMount: function() {
-  },
+class TagsContainer extends React.Component {
 
-  getInitialState: function() {
-    return {
+  constructor(props) {
+    super(props);
+    this.state = {
       showLightbox: false,
       tags: this.props.tags
-    }
-  },
+    };
+    AddI18n.call(this);
+  }
+  
 
-  openCreateLightbox: function() {
+
+  componentDidMount() {
+  }
+
+  
+  openCreateLightbox() {
   	this.setState({showLightbox: true}); 
-  },
+  }
 
-  closeCreateLightbox: function() {
+  closeCreateLightbox() {
   	this.setState({showLightbox: false});
-    this.refs.lightbox.reset();
-  },
+  }
 
-  create: function(bookmark) {
+  create(bookmark) {
 
     pubsub.emit("ACTION:bookmark-create", 
                 _.extend({user_id: W.user.id}, bookmark), 
@@ -37,17 +43,19 @@ module.exports = React.createClass({
       
    
 
-  },
+  }
 
-  render: function() {
+  render() {
 
   	return (
       <div>
-      		<a className="button new-bookmark-action" onClick={this.openCreateLightbox.bind(this)}>Add a bookmark</a>
-      		<BookmarkCreateLightbox ref="lightbox" confirm={this.create.bind(this)} cancel={this.closeCreateLightbox.bind(this)} show={this.state.showLightbox} tags={this.state.tags} />
+      		<a className="button new-bookmark-action" onClick={this.openCreateLightbox.bind(this)}>{this.__("addABookmark")}</a>
+      		<Modal child={BookmarkCreateLightbox} confirm={this.create.bind(this)} cancel={this.closeCreateLightbox.bind(this)} show={this.state.showLightbox} tags={this.state.tags} />
           <SearchBox />
       </div>
     );
   }
-});
 
+}
+
+export default TagsContainer;

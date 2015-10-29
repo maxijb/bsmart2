@@ -40,21 +40,20 @@ module.exports = React.createClass({
   render: function() {
 
   	return (
-    	<div className={"modal-outer-wrapper" + (this.props.show ? "" : " hidden")}>
-    		<div className='modal-inner-wrapper'>
-    			<p className='title'>New label</p>
-    			<fieldset>
-    				<p>URL</p>
-            <input type="text" ref="uri" onChange={this.handleChange.bind(this, "uri")} value={this.state.uri} />
-            <p>Title</p>
-    				<input type="text" ref="name" onChange={this.handleChange.bind(this, "name")} value={this.state.name} />
-            <p>Tag</p>
-            <SelectOption tags={this.props.tags} ref="tag" />
-    			</fieldset>
-    			<a className="button primary" onClick={this.confirm.bind(this)}>Create</a>
-    			<a className="button" onClick={this.props.cancel.bind(this)}>Cancel</a>
-    		</div>
-    	</div>
+    	
+    			<div className="bookmark-create">
+            <p className='title'>New bookmark</p>
+      			<fieldset>
+      				<p>URL</p>
+              <input type="text" ref="uri" onChange={this.handleChange.bind(this, "uri")} value={this.state.uri} />
+              <p>Title</p>
+      				<input type="text" ref="name" onChange={this.handleChange.bind(this, "name")} value={this.state.name} />
+              <p>Tag</p>
+              <SelectOption tags={this.props.tags} ref="tag" />
+      			</fieldset>
+      			<a className="button primary" onClick={this.confirm.bind(this)}>Create</a>
+      			<a className="button" onClick={this.props.cancel.bind(this)}>Cancel</a>
+          </div>
     );
   }
 });

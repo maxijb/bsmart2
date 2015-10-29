@@ -22,7 +22,7 @@ class TagsContainer extends React.Component {
       this.state = {tags: TagsStore.getTags(), active: TagsStore.getActive(), tagListOpen: false };
     }
     this.props = props || {};
-    AddI18n.call(this, this.props);
+    AddI18n.call(this);
   }
 
 

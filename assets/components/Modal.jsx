@@ -11,10 +11,20 @@ class Modal extends React.Component {
 
   componentDidMount() {}  
 
+  closeModal() {
+    this.props.cancel();
+    if (typeof this.refs['child'].reset === "function") {
+      this.refs['child'].reset()
+    }
+  }
+
   render() {
     return (
-        <div className={"popup " + (this.props.show ? "" : " hidden")}>
-            <this.props.child {...this.other}/>
+        <div className={"modal-outer-wrapper" + (this.props.show ? "" : " hidden")} onClick={this.closeModal.bind(this)}>
+          <div className="modal-inner-wrapper">
+            <i className="bicon-close" onClick={this.closeModal.bind(this)}></i>
+            <this.props.child {...this.other} ref="child"/>
+          </div>
         </div>
     );
   }

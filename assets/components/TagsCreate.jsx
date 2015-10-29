@@ -3,7 +3,9 @@ import TagsCreateLightbox from './TagsCreateLightbox';
 import Modal from './Modal';
 import TagsStore from './Stores/TagsStore';
 import pubsub from './Utils/PubSub';
-console.log('tagcreate', pubsub);
+import AddI18n from './Utils/AddI18n';
+
+
 
 class TagsCreate extends React.Component {
   
@@ -13,6 +15,7 @@ class TagsCreate extends React.Component {
         showLightbox: false
       }
       this.props = props;
+      AddI18n.call(this);
   }
 
   openCreateTagLightbox() {
@@ -21,7 +24,6 @@ class TagsCreate extends React.Component {
 
   closeCreateTagLightbox() {
     this.setState({showLightbox: false});
-    this.refs.lightbox.reset();
   }
 
   create(name, color) {
@@ -38,9 +40,9 @@ class TagsCreate extends React.Component {
     return (
       <div className="tag-create">
         <p className='tag-create-line'>
-          <a className="button new-label-action" onClick={this.openCreateTagLightbox.bind(this)}>Create new tag</a>
+          <a className="button new-label-action" onClick={this.openCreateTagLightbox.bind(this)}>{this.__("createNewTag")}</a>
         </p>
-        <Modal ref="lightbox" child={TagsCreateLightbox} confirm={this.create.bind(this)} cancel={this.closeCreateTagLightbox.bind(this)} show={this.state.showLightbox} />
+        <Modal child={TagsCreateLightbox} confirm={this.create.bind(this)} cancel={this.closeCreateTagLightbox.bind(this)} show={this.state.showLightbox} />
       </div>
     );
   }
