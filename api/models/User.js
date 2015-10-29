@@ -24,8 +24,8 @@ module.exports = {
     signup: 'timestamp',
     email: 'string',
     type: 'STRING',
-    native_id: "STRING"
-    
+    native_id: "STRING",
+    password: {type:"STRING", defaultsTo:""}
   },
 
 };
