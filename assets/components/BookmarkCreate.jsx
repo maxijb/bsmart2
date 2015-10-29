@@ -1,5 +1,6 @@
 var React = require('react');
 var BookmarkCreateLightbox = require('./BookmarkCreateLightbox');
+var SearchBox = require('./SearchBox');
 var _ = require('lodash');
 var pubsub = require('./Utils/PubSub');
 
@@ -41,12 +42,11 @@ module.exports = React.createClass({
   render: function() {
 
   	return (
-    	<div className="bookmark-create">
-    		<p className='bookmark-create-line'>
-    			<a className="button" onClick={this.openCreateLightbox.bind(this)}>Create new Bookmark</a>
-    		</p>
-    		<BookmarkCreateLightbox ref="lightbox" confirm={this.create.bind(this)} cancel={this.closeCreateLightbox.bind(this)} show={this.state.showLightbox} tags={this.state.tags} />
-    	</div>
+      <div>
+      		<a className="button new-bookmark-action" onClick={this.openCreateLightbox.bind(this)}>Add a bookmark</a>
+      		<BookmarkCreateLightbox ref="lightbox" confirm={this.create.bind(this)} cancel={this.closeCreateLightbox.bind(this)} show={this.state.showLightbox} tags={this.state.tags} />
+          <SearchBox />
+      </div>
     );
   }
 });

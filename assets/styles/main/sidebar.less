@@ -5,7 +5,9 @@
 	top:0;
 	height:100%;
 	width:260px;
-	overflow-y: scroll;
+	.mobile-menu-icon{
+		display:none;
+	}
 	#profile-box{
 		background:darken(@darkgrey, 5%);
 		padding:20px;	
@@ -35,16 +37,6 @@
 		padding:40px 20px 20px 20px;
 		color:lighten(@darkgrey, 30%);
 		position:relative;
-		.bicon-settings{
-		    position: absolute;
-		    right: 20px;
-		    font-size: @bigfont;
-		    top: 44px;
-		    &:hover{
-		    	color:@white;
-		    	cursor:pointer;
-		    }		
-		}
 	}
 	ul li{
 		position:relative;
@@ -53,9 +45,28 @@
 		border-bottom:1px solid;
 		border-bottom-color: lighten(@darkgrey, 10%);
 		cursor:pointer;
-		&:hover{
-			background:lighten(@darkgrey, 4%);			
+		.label-action{
+			display:none;
+			position:absolute;
+			color:lighten(@darkgrey, 30%);
+			top:22px;
+			&:hover{
+				color:@white;
+			}
 		}
+		.bicon-acedit{
+			right:50px;
+		}
+		.bicon-trashcan{
+			right:20px;
+		}		
+		&:hover{
+			background:lighten(@darkgrey, 4%);
+			.label-action{
+				display:block;
+			}
+		}
+		
 	}
 	.label-checkbox{
 		display:inline-block;
@@ -84,20 +95,57 @@
 		display:inline-block;
 	}
 /* Mobile side bar */
-	@media all and (min-width: 300px) and (max-width: 780px) {
+	@media all and (min-width: 300px) and (max-width: 800px) {
+		
 		height:auto;
 		width:100%;
 		z-index:2;
-		.bookmarks-filters-box{
-			display:none;
+		.mobile-menu-icon{
+			.smooth-transition;
+			display:block;
 			position:absolute;
-			background-color:white;
-			top:10px;
-			right:10px;
-			width:300px;
+			right:8px;
+			top: 0;
+			color:@white;
+			font-size:@regularfont;
+			padding:25px 10px 24px 10px;
+			cursor:pointer;
+			z-index:2;
+			&.slideoff{
+				right:225px;
+				font-size:@smallfont;
+			}
 		}
+		.bookmarks-filters-box{
+			.smooth-transition;
+			position: fixed;
+			right: -260px;
+			top: 0;
+			background-color: @darkgrey;
+			width: 260px;
+			height: 100%;
+			&.slideoff{
+				right:0;
+			}
+		}		
 		#profile-box{
-			padding:15px;
+			padding:10px 15px;
+			#user-details{
+				p{
+					margin:2px 0 4px 0;
+				}
+			}
+		}
+		h2{
+			padding:20px 20px 20px 35px;
+			color:@white;
+		}
+		ul{
+			li{
+				.label-action{
+					display:block;
+				}
+			}
 		}
 	}	
 }

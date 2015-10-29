@@ -1,5 +1,6 @@
 var React = require('react');
 var CommonMixins = require('./CommonMixins');
+var MenuButton = require('./MenuButton');
 
 module.exports = React.createClass({
   mixins: [CommonMixins.translationMixin],
@@ -118,6 +119,7 @@ module.exports = React.createClass({
 					<p>{connected ? this.state.user.name : ""}</p>
 					<a href="#" onClick={this.logout.bind(this)}>{this.__("logOut")}</a>
 				</div>
+				<MenuButton />
 			</div>
     		<div className={"button " + (connected ? 'hidden' : "")} onClick={this.login.bind(this)}>{this.__("logInWithFacebook")}</div>
     	</div>

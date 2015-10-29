@@ -13,10 +13,9 @@ module.exports = React.createClass({
 
   render: function() { 
     return (
-      
       <form id="searchbox" action="" method="post">
         <input id="searchbar" type="text" placeholder={this.__("searchABookmarkByLabelOrName")} />
-        <input id="searchbtn" type="submit" value={this.__("search")} />
+        <span id="searchbtn" className="bicon-search" value={this.__("search")} />
       </form>
     );
   }

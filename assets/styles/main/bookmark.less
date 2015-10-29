@@ -1,17 +1,10 @@
 .bookmark{
 	display:inline-block;
 	background:@white;
-	border-top:10px solid @lightgreen;
-	border-radius:0 0 3px 3px;
+	border-top:5px solid @lightgreen;
 	box-shadow:0 1px 1px 0 lighten(@darkgrey, 50%);
 	margin-bottom:1.2%;
-	
-	@media all and (min-width: 800px) and (max-width: 1020px) {
-		width:49%;
-		&:nth-child(even){
-		margin-left:1%;
-		}		
-	}
+
 	@media all and (min-width: 1020px) {
 		width:32%;
 		&:nth-child(odd){
@@ -20,6 +13,16 @@
 		&:nth-child(odd) + &:nth-child(even) {
 			margin-right:0.8%;
 		}				
+	}	
+	@media all and (min-width: 800px) and (max-width: 1020px) {
+		width:49%;
+		&:nth-child(even){
+		margin-left:1%;
+		}		
+	}
+	@media all and (min-width: 300px) and (max-width: 800px) {
+		width:100%;
+		margin-bottom:10px;
 	}	
 
 	a{
@@ -50,7 +53,7 @@
 		}
 		&:hover{
 			text-decoration:none;
-			background:darken(@white, 2%);
+			background:@lightyellow;
 			.bicon-readguide{
 				display:block
 			}
@@ -73,4 +76,3 @@
 		}
 	}
 }
-

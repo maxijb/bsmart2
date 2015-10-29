@@ -1,6 +1,7 @@
 import TagsList from './TagsList';
 import TagsCreate from './TagsCreate';
 import pubsub from './Utils/PubSub';
+
 import CommonMixins from './CommonMixins';
 import TagsStore from './Stores/TagsStore';
 
@@ -18,7 +19,7 @@ class TagsContainer extends React.Component {
       this.state = {tags: (props.tags || {}), active: {}};
     } else {
       //client side rendering consumes service
-      this.state = {tags: TagsStore.getTags(), active: TagsStore.getActive()};
+      this.state = {tags: TagsStore.getTags(), active: TagsStore.getActive(), tagListOpen: false };
     }
     this.props = props || {};
     AddI18n.call(this, this.props);
@@ -28,6 +29,10 @@ class TagsContainer extends React.Component {
   componentDidMount() {
     pubsub.on('EVENT:tags-updated', (tags, active) => {
       this.setState({tags: tags, active: active});
+    });
+
+    pubsub.on("ACTION:taglist-toggle", function(state) {
+       this.setState({tagListOpen: state});
     });
   }
 
@@ -83,8 +88,8 @@ class TagsContainer extends React.Component {
 
   render() {
     return (
-    	<div className="tags-container bookmarks-filters-box">
-        <h2>{this.__("myBookmarks")}<i className="bicon-settings"></i></h2>
+    	<div className={"tags-container bookmarks-filters-box" + (this.state.tagListOpen ? "slideoff" : "")}>
+        <h2>{this.__("myBookmarks")}</h2>
     		<TagsList tags={this.state.tags} removeTag={this.removeTag.bind(this)} selectTag={this.toggleTag.bind(this)}/> 
         <TagsCreate />
     	</div>

@@ -2,6 +2,7 @@ import React from 'react';
 import TagsCreateLightbox from './TagsCreateLightbox';
 import TagsStore from './Stores/TagsStore';
 import pubsub from './Utils/PubSub';
+console.log('tagcreate', pubsub);
 
 class TagsCreate extends React.Component {
   

@@ -1,10 +1,17 @@
 #searchbox{
 	position:relative;
-	max-width:800px;
+	width:62%;
+	display:inline-block;
+	margin-left:6px;
+	@media all and (min-width: 300px) and (max-width: 800px) {
+		width:100%;
+		margin:10px 0 0 0;
+	}	
 	#searchbar{
-		padding:11px 1%;
+		padding:11px 2%;
+		margin:0;
 		border:none;
-		width:98%;
+		width:96%;
 		font-size:@regularfont;
 		background-color:darken(@lightgrey, 7%);
 		color:@darkgrey;
@@ -15,21 +22,26 @@
 		          &:-moz-placeholder {color: darken(@lightgrey, 30%);}
 	}
 	#searchbtn{
+		display:inline-block;
 		position:absolute;
 		right:0;
 		top:0;
-		padding:10px;
+		padding:12px;
 		color:@white;
 		border:none;
 		font-size:@regularfont;
 		background:@lightblue;
-		width:170px;
-		height:40px;
+		width:62px;
+		height:16px;
 		cursor:pointer;
 		border-radius:0 3px 3px 0;
+		text-align:center;
 		&:hover{
 			background:#003580;
 		}
+		@media all and (min-width: 300px) and (max-width: 800px) {
+			width:20px;
+		}		
 	}
 }
 
@@ -63,4 +75,32 @@
 		    top:1px;
 		}
 	}
+	@media all and (min-width: 300px) and (max-width: 800px) {
+		font-weight:normal;
+		margin:20px 0;
+		font-size:@regularfont;
+	}
+}
+
+a.new-bookmark-action{
+	background-color:@lightred;
+	display:inline-block;
+	padding:11px 22px;
+	color:@white;
+	text-decoration:none;
+	border-radius:3px;
+	vertical-align:top;
+	&:hover{
+		background-color:darken(@lightred, 8%)
+	}
+	@media all and (min-width: 300px) and (max-width: 800px) {
+		width:100%;
+		text-align:center;
+		padding:11px 0;
+	}	
+}
+
+.bookmark-create {
+	display: inline-block;
+    vertical-align: top;
 }
