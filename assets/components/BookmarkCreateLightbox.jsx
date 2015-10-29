@@ -40,8 +40,8 @@ module.exports = React.createClass({
   render: function() {
 
   	return (
-    	<div className={"bookmarktag-create-lightbox-dimmer " + (this.props.show ? "" : " hidden")}>
-    		<div className='bookmark-create-lightbox'>
+    	<div className={"modal-outer-wrapper" + (this.props.show ? "" : " hidden")}>
+    		<div className='modal-inner-wrapper'>
     			<p className='title'>New label</p>
     			<fieldset>
     				<p>URL</p>

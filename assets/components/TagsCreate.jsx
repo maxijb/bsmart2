@@ -37,7 +37,7 @@ class TagsCreate extends React.Component {
     return (
       <div className="tag-create">
         <p className='tag-create-line'>
-          <a className="button" onClick={this.openCreateTagLightbox.bind(this)}>Create new tag</a>
+          <a className="button new-label-action" onClick={this.openCreateTagLightbox.bind(this)}>Create new tag</a>
         </p>
         <TagsCreateLightbox ref="lightbox" confirm={this.create.bind(this)} cancel={this.closeCreateTagLightbox.bind(this)} show={this.state.showLightbox} />
       </div>
