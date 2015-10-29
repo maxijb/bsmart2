@@ -31,7 +31,7 @@ class TagsContainer extends React.Component {
       this.setState({tags: tags, active: active});
     });
 
-    pubsub.on("ACTION:taglist-toggle", function(state) {
+    pubsub.on("ACTION:taglist-toggle", (state) => {
        this.setState({tagListOpen: state});
     });
   }
@@ -88,7 +88,7 @@ class TagsContainer extends React.Component {
 
   render() {
     return (
-    	<div className={"tags-container bookmarks-filters-box" + (this.state.tagListOpen ? "slideoff" : "")}>
+    	<div className={"tags-container bookmarks-filters-box " + (this.state.tagListOpen ? "slideoff" : "")}>
         <h2>{this.__("myBookmarks")}</h2>
     		<TagsList tags={this.state.tags} removeTag={this.removeTag.bind(this)} selectTag={this.toggleTag.bind(this)}/> 
         <TagsCreate />
