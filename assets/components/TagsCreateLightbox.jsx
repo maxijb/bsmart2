@@ -33,7 +33,6 @@ class TagsCreateLightbox extends React.Component {
   render() {
 
     return (
-      <div className={"tag-create-lightbox-dimmer " + (this.props.show ? "" : " hidden")}>
         <div className='tag-create-lightbox'>
           <p className='title'>New label</p>
           <fieldset>
@@ -45,7 +44,6 @@ class TagsCreateLightbox extends React.Component {
           <a className="button primary" onClick={this.confirm.bind(this)}>Create</a>
           <a className="button" onClick={this.props.cancel}>Cancel</a>
         </div>
-      </div>
     );
 
   }

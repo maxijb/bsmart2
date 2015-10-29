@@ -1,5 +1,6 @@
 import React from 'react';
 import TagsCreateLightbox from './TagsCreateLightbox';
+import Modal from './Modal';
 import TagsStore from './Stores/TagsStore';
 import pubsub from './Utils/PubSub';
 console.log('tagcreate', pubsub);
@@ -39,7 +40,7 @@ class TagsCreate extends React.Component {
         <p className='tag-create-line'>
           <a className="button new-label-action" onClick={this.openCreateTagLightbox.bind(this)}>Create new tag</a>
         </p>
-        <TagsCreateLightbox ref="lightbox" confirm={this.create.bind(this)} cancel={this.closeCreateTagLightbox.bind(this)} show={this.state.showLightbox} />
+        <Modal ref="lightbox" child={TagsCreateLightbox} confirm={this.create.bind(this)} cancel={this.closeCreateTagLightbox.bind(this)} show={this.state.showLightbox} />
       </div>
     );
   }
