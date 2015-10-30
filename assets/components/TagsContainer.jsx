@@ -1,7 +1,8 @@
 import TagsList from './TagsList';
 import TagsCreate from './TagsCreate';
-import pubsub from './Utils/PubSub';
+import ConfirmModal from './ConfirmModal';
 
+import pubsub from './Utils/PubSub';
 import CommonMixins from './CommonMixins';
 import TagsStore from './Stores/TagsStore';
 
@@ -37,25 +38,27 @@ class TagsContainer extends React.Component {
   }
 
 
-  removeTag(id) {
-   
-    let j, 
-        tags = this.state.tags;
-
-    //find in array
-    for (let i = 0; i < tags.length; i++ ) {
-        if (tags[i].id == id) {
-            j = i;
-            break;
-        }
-    }
-
-    //update state
-    tags.splice(j, 1);
-    this.setState({tags: tags});
-
-    //delete from database
-    $.post('/tag/destroy/' + id);
+  confirmRemoveTag(tag) {
+    debugger;
+    this.setState({tagToRemove: null})
+    
+    TagsStore.removeTag(tag.id, (tags) => {
+       this.setState({tags});
+    })
+  }
+  cancelRemove() {
+    debugger;
+    this.setState({
+      confirmRemove: null,
+      tagToRemove: null
+    });
+  }
+  removeTag(tag) {
+    debugger;
+    this.setState({
+      confirmRemove: this.confirmRemoveTag.bind(this, tag),
+      tagToRemove: tag
+    }); 
   }
 
   toggleTag(id) {
@@ -87,11 +90,20 @@ class TagsContainer extends React.Component {
   }
 
   render() {
+
+    let removePopup = !this.state.tagToRemove ? "" :
+        (
+          <ConfirmModal icon="remove" text={this.__("areYouSureYouWantToDeleteThisTag", this.state.tagToRemove.name)} confirm={this.state.confirmRemove} cancel={this.cancelRemove.bind(this)}/>
+        );
+
+        console.log(removePopup);
+
     return (
     	<div className={"tags-container bookmarks-filters-box " + (this.state.tagListOpen ? "slideoff" : "")}>
         <h2>{this.__("myBookmarks")}</h2>
     		<TagsList tags={this.state.tags} removeTag={this.removeTag.bind(this)} selectTag={this.toggleTag.bind(this)}/> 
         <TagsCreate />
+        {removePopup}
     	</div>
     );
   }

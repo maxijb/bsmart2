@@ -10,9 +10,9 @@ class Tag extends React.Component {
     };
   }
   
-  remove(id, event) {
-    this.props.remove(id);
-    event.preventDefault();
+  removeTag(event) {
+    event.stopPropagation();
+    this.props.remove(this.props.tag);
   }
 
 
@@ -22,11 +22,10 @@ class Tag extends React.Component {
             <span className={"label-checkbox " + (this.props.tag.active ? "label-checkbox-on bicon-tickfull" : "")}></span>
             <span className="label-name">{this.props.tag.name}</span>
             <span className="label-action bicon-acedit"></span>
-            <span className="label-action bicon-trashcan"></span> 
+            <span className="label-action bicon-trashcan" onClick={this.removeTag.bind(this)}></span> 
         </li>
     );
   }
-    //<a className="remove-button" onClick={this.remove.bind(this, this.props.tag.id)}>X</a>
 
 }
 

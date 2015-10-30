@@ -23,6 +23,7 @@ class TagsCreateLightbox extends React.Component {
 
   confirm() {
     this.props.confirm(this.state.value, this.refs.colorSelector.state.active);
+    this.reset();
   }
 
   reset() {

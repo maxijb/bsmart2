@@ -13,7 +13,7 @@ class Modal extends React.Component {
 
   closeModal() {
     this.props.cancel();
-    if (typeof this.refs['child'].reset === "function") {
+    if (this.refs['child'] && typeof this.refs['child'].reset === "function") {
       this.refs['child'].reset()
     }
   }
@@ -29,7 +29,7 @@ class Modal extends React.Component {
         <div className={"modal-outer-wrapper" + (this.props.show ? "" : " hidden")} onClick={this.closeMaskModal.bind(this)}>
           <div className="modal-inner-wrapper">
             <i className="bicon-close" onClick={this.closeModal.bind(this)}></i>
-            <this.props.child {...this.other} ref="child"/>
+            {typeof this.props.child == "function" ? <this.props.child {...this.other} ref="child"/> : this.props.child}
           </div>
         </div>
     );
