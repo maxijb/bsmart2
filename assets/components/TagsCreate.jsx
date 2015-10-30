@@ -42,7 +42,7 @@ class TagsCreate extends React.Component {
         <p className='tag-create-line'>
           <a className="button new-label-action" onClick={this.openCreateTagLightbox.bind(this)}>{this.__("createNewTag")}</a>
         </p>
-        <Modal child={TagsCreateLightbox} confirm={this.create.bind(this)} cancel={this.closeCreateTagLightbox.bind(this)} show={this.state.showLightbox} />
+        <Modal child={TagsCreateLightbox} confirm={this.create.bind(this)} cancel={this.closeCreateTagLightbox.bind(this)} show={this.state.showLightbox} tagToEdit={this.props.tagToEdit}/>
       </div>
     );
   }

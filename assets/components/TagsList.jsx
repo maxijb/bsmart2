@@ -8,7 +8,7 @@ class TagList extends React.Component {
     let items = Object.keys(this.props.tags).map((id, i) => {
         let item = this.props.tags[id];
         return (
-          <Tag tag={item} key={item.id} remove={this.props.removeTag} select={this.props.selectTag}/>
+          <Tag tag={item} key={item.id} remove={this.props.removeTag} select={this.props.selectTag} edit={this.props.editTag} />
         );
     });
 

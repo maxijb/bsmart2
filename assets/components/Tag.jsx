@@ -15,13 +15,18 @@ class Tag extends React.Component {
     this.props.remove(this.props.tag);
   }
 
+  edit(event) {
+    event.stopPropagation();
+    this.props.edit(this.props.tag);
+  }
+
 
   render() {
     return (
         <li className="tag" data-id={this.props.tag.id} onClick={this.props.select.bind(this, this.props.tag.id)}>
             <span className={"label-checkbox " + (this.props.tag.active ? "label-checkbox-on bicon-tickfull" : "")}></span>
             <span className="label-name">{this.props.tag.name}</span>
-            <span className="label-action bicon-acedit"></span>
+            <span className="label-action bicon-acedit" onClick={this.edit.bind(this)}></span>
             <span className="label-action bicon-trashcan" onClick={this.removeTag.bind(this)}></span> 
         </li>
     );

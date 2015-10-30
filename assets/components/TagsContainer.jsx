@@ -20,7 +20,11 @@ class TagsContainer extends React.Component {
       this.state = {tags: (props.tags || {}), active: {}};
     } else {
       //client side rendering consumes service
-      this.state = {tags: TagsStore.getTags(), active: TagsStore.getActive(), tagListOpen: false };
+      this.state = {tags: TagsStore.getTags(), 
+          active: TagsStore.getActive(), 
+          tagListOpen: false,
+          tagToEdit: null,
+          tagToRemove: null };
     }
     this.props = props || {};
     AddI18n.call(this);
@@ -61,6 +65,11 @@ class TagsContainer extends React.Component {
     }); 
   }
 
+  editTag(tag) {
+
+  }
+
+
   toggleTag(id) {
       pubsub.emit("ACTION:tag-toggle", id);
   }
@@ -76,13 +85,8 @@ class TagsContainer extends React.Component {
       active[id] = true;
       pubsub.emit("ACTION:tag-selected", active);
 
-      //find in array
-      for (let i = 0; i < tags.length; i++ ) {
-          if (tags[i].id == id) {
-              j = i;
-              break;
-          }
-      }
+      
+      tags.map((x) => { x.active = x.id == id });
 
       tags[j].active = 1;
       this.setState({tags: tags, active: active});
@@ -96,13 +100,12 @@ class TagsContainer extends React.Component {
           <ConfirmModal icon="remove" text={this.__("areYouSureYouWantToDeleteThisTag", this.state.tagToRemove.name)} confirm={this.state.confirmRemove} cancel={this.cancelRemove.bind(this)}/>
         );
 
-        console.log(removePopup);
 
     return (
     	<div className={"tags-container bookmarks-filters-box " + (this.state.tagListOpen ? "slideoff" : "")}>
         <h2>{this.__("myBookmarks")}</h2>
-    		<TagsList tags={this.state.tags} removeTag={this.removeTag.bind(this)} selectTag={this.toggleTag.bind(this)}/> 
-        <TagsCreate />
+    		<TagsList tags={this.state.tags} removeTag={this.removeTag.bind(this)} selectTag={this.toggleTag.bind(this)} editTag={this.editTag.bind(this)} /> 
+        <TagsCreate updateTag={this.state.tagToEdit} />
         {removePopup}
     	</div>
     );
