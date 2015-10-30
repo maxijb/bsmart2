@@ -41,19 +41,19 @@ module.exports = React.createClass({
 
   	return (
     	
-    			<div className="bookmark-create">
-            <p className='title'>New bookmark</p>
-      			<fieldset>
-      				<p>URL</p>
+    			<form className="bookmark-create">
+            <p className='modal-title'>New bookmark</p>
+      			<fieldset className="modal-main-content-wrapper">
+      				<label>URL</label>
               <input type="text" ref="uri" onChange={this.handleChange.bind(this, "uri")} value={this.state.uri} />
-              <p>Title</p>
+              <label>Title</label>
       				<input type="text" ref="name" onChange={this.handleChange.bind(this, "name")} value={this.state.name} />
-              <p>Tag</p>
+              <label>Tag</label>
               <SelectOption tags={this.props.tags} ref="tag" />
       			</fieldset>
-      			<a className="button primary" onClick={this.confirm.bind(this)}>Create</a>
-      			<a className="button" onClick={this.props.cancel.bind(this)}>Cancel</a>
-          </div>
+      			<a className="modal-primary-action" onClick={this.confirm.bind(this)}>Create</a>
+      			<a className="modal-secondary-action" onClick={this.props.cancel.bind(this)}>Cancel</a>
+          </form>
     );
   }
 });

@@ -44,7 +44,7 @@ module.exports = React.createClass({
 
 
   	return (
-    	<div className="color-selector">
+    	<div className="color-selector-wrapper">
     		{items}
     	</div>
     );

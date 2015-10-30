@@ -33,17 +33,17 @@ class TagsCreateLightbox extends React.Component {
   render() {
 
     return (
-        <div className='tag-create-lightbox'>
-          <p className='title'>New label</p>
-          <fieldset>
-            <p>Name your new label</p>
+        <form className='tag-create-lightbox'>
+          <p className='modal-title'>Create a new label</p>
+          <fieldset className="modal-main-content-wrapper">
+            <label>Name your label:</label>
             <input type="text" id="tag-create-input" onChange={this.handleChange.bind(this)} value={this.state.value} />
-            <p>Pick a color</p>
+            <label>Pick a color:</label>
             <ColorSelector select={this.selectColor} ref="colorSelector"/>
           </fieldset>
-          <a className="button primary" onClick={this.confirm.bind(this)}>Create</a>
-          <a className="button" onClick={this.props.cancel}>Cancel</a>
-        </div>
+          <a className="modal-primary-action" onClick={this.confirm.bind(this)}>Create</a>
+          <a className="modal-secondary-action" onClick={this.props.cancel}>Cancel</a>
+        </form>
     );
 
   }
