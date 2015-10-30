@@ -18,9 +18,15 @@ class Modal extends React.Component {
     }
   }
 
+  closeMaskModal(event) {
+    if (event.target.className.match('modal-outer-wrapper')) {
+      this.closeModal();
+    }
+  }
+
   render() {
     return (
-        <div className={"modal-outer-wrapper" + (this.props.show ? "" : " hidden")} onClick={this.closeModal.bind(this)}>
+        <div className={"modal-outer-wrapper" + (this.props.show ? "" : " hidden")} onClick={this.closeMaskModal.bind(this)}>
           <div className="modal-inner-wrapper">
             <i className="bicon-close" onClick={this.closeModal.bind(this)}></i>
             <this.props.child {...this.other} ref="child"/>

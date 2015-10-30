@@ -13,7 +13,7 @@ module.exports = React.createClass({
   },
 
   handleContentClick: function() {
-    showList = this.state.showList;
+    let showList = this.state.showList;
     this.setState({showList: !showList});
     if (!showList) {
       document.addEventListener('click', this.hideList);
