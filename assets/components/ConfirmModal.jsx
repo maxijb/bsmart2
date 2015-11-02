@@ -17,8 +17,8 @@ class ConfirmModal extends React.Component {
         <div>
           <i className={"bicon-" + this.props.icon}></i>
           <p>{this.props.text}</p>
-          <a onClick={this.props.confirm}>{this.__("confirm")}</a>
-          <a onClick={this.props.cancel}>{this.__("cancel")}</a>
+          <a className="modal-primary-action" onClick={this.props.confirm}>{this.__("confirm")}</a>
+          <a className="modal-secondary-action" onClick={this.props.cancel}>{this.__("cancel")}</a>
         </div>
       );
 

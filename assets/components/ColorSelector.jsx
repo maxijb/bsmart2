@@ -5,7 +5,7 @@ module.exports = React.createClass({
   },
   getDefaultProps: function() {
     return {
-      colors: ["000", "666", "333", "ccc", "ddd"]
+      colors: ["EB6A68", "F49853", "F3CB3E", "77BF5B", "40CFAF", "0896FF", "B778E8"]
     };
   },
 
